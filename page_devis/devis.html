@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>AYOUBDECOR - Meubles modernes sur mesure | Atelier & pose à domicile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/page_acceuil/acceuil.css">
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="en-tete" id="en-tete">
+        <div class="conteneur">
+            <div class="header-contenu">
+                <a href="index.html" class="logo" style="display: flex;
+    align-items: center;"> <img src="ayoubdecor_logoo.png" alt="ayoub_logo" >AYOUBDECOR</a>
+
+                <nav class="menu-principal" id="menu-principal">
+                    <ul>
+                        <li><a href="/page_acceuil/acceuil.html">Accueil</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="galerie.html">Galerie</a></li>
+                        <li><a href="a-propos.html">À propos</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <a href="devis.html" class="btn btn-primaire">Demander un devis</a>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+        <!-- Section Hero -->
+    <section class="section-hero" style="min-height: 60vh; padding-top: 100px;" >
+        <div class="conteneur">
+            <div class="section-header" style="text-align: center;">
+                <h1>Demande de devis personnalisé</h1>
+                <p>Décrivez-nous votre projet et obtenez un devis détaillé pour vos meubles sur mesure</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Formulaire de devis -->
+    <section class="section">
+        <div class="conteneur">
+            <div class="formulaire" id="formulaire-devis" >
+                <form id="form-devis" novalidate>
+                    <!-- Informations personnelles -->
+                    <div class="section-formulaire">
+                        <h2>Vos informations</h2>
+
+                        <div class="grille-formulaire">
+                            <div class="groupe-formulaire">
+                                <label for="nom">Nom complet *</label>
+                                <input type="text" id="nom" name="nom" required>
+                            </div>
+
+                            <div class="groupe-formulaire">
+                                <label for="email">Adresse email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="groupe-formulaire">
+                                <label for="telephone">Numéro de téléphone *</label>
+                                <input type="tel" id="telephone" name="telephone" required>
+                            </div>
+
+                            <div class="groupe-formulaire">
+                                <label for="ville">Ville</label>
+                                <input type="text" id="ville" name="ville">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Détails du projet -->
+                    <div class="section-formulaire">
+                        <h2>Détails de votre projet</h2>
+
+                        <div class="groupe-formulaire">
+                            <label for="type_prestation">Type de prestation *</label>
+                            <select id="type_prestation" name="type_prestation" required>
+                                <option value="">Sélectionnez une prestation</option>
+                                <option value="fabrication">Fabrication sur mesure</option>
+                                <option value="pose">Pose et installation</option>
+                                <option value="renovation">Rénovation</option>
+                                <option value="amenagement">Aménagement complet</option>
+                                <option value="conseil">Conseil et étude</option>
+                            </select>
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label for="type_meuble">Type de meuble</label>
+                            <select id="type_meuble" name="type_meuble">
+                                <option value="">Sélectionnez un type</option>
+                                <option value="cuisine">Cuisine</option>
+                                <option value="salon">Salon / Séjour</option>
+                                <option value="chambre">Chambre</option>
+                                <option value="bureau">Bureau / Bureau à domicile</option>
+                                <option value="salle-de-bain">Salle de bain</option>
+                                <option value="dressing">Dressing</option>
+                                <option value="bibliotheque">Bibliothèque</option>
+                                <option value="meuble-tv">Meuble TV</option>
+                                <option value="etagere">Étagère / Rangement</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="grille-formulaire">
+                            <div class="groupe-formulaire">
+                                <label for="longueur">Longueur (cm)</label>
+                                <input type="number" id="longueur" name="longueur" min="1" max="1000">
+                            </div>
+
+                            <div class="groupe-formulaire">
+                                <label for="largeur">Largeur (cm)</label>
+                                <input type="number" id="largeur" name="largeur" min="1" max="1000">
+                            </div>
+
+                            <div class="groupe-formulaire">
+                                <label for="hauteur">Hauteur (cm)</label>
+                                <input type="number" id="hauteur" name="hauteur" min="1" max="300">
+                            </div>
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label for="materiau">Matériau souhaité</label>
+                            <select id="materiau" name="materiau">
+                                <option value="">Sélectionnez un matériau</option>
+                                <option value="chene">Chêne</option>
+                                <option value="noyer">Noyer</option>
+                                <option value="hetre">Hêtre</option>
+                                <option value="sapin">Sapin</option>
+                                <option value="pin">Pin</option>
+                                <option value="acier">Acier inoxydable</option>
+                                <option value="aluminium">Aluminium</option>
+                                <option value="verre">Verre</option>
+                                <option value="composite">Composite</option>
+                                <option value="melange">Mélange de matériaux</option>
+                                <option value="conseil">Conseil souhaité</option>
+                            </select>
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label for="finition">Finition souhaitée</label>
+                            <select id="finition" name="finition">
+                                <option value="">Sélectionnez une finition</option>
+                                <option value="naturelle">Naturelle (huile, cire)</option>
+                                <option value="vernis-mate">Vernis mat</option>
+                                <option value="vernis-brillant">Vernis brillant</option>
+                                <option value="peinture">Peinture</option>
+                                <option value="lasure">Lasurée</option>
+                                <option value="conseil">Conseil souhaité</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Budget et planning -->
+                    <div class="section-formulaire">
+                        <h2>Budget et planning</h2>
+
+                        <div class="groupe-formulaire">
+                            <label for="budget">Budget estimé (€)</label>
+                            <select id="budget" name="budget">
+                                <option value="">Sélectionnez une fourchette</option>
+                                <option value="500-1000">500 - 1 000 €</option>
+                                <option value="1000-2500">1 000 - 2 500 €</option>
+                                <option value="2500-5000">2 500 - 5 000 €</option>
+                                <option value="5000-10000">5 000 - 10 000 €</option>
+                                <option value="10000+">Plus de 10 000 €</option>
+                                <option value="conseil">Conseil souhaité</option>
+                            </select>
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label for="date_souhaitee">Date souhaitée de réalisation</label>
+                            <input type="date" id="date_souhaitee" name="date_souhaitee" min="">
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label for="urgence">Niveau d'urgence</label>
+                            <select id="urgence" name="urgence">
+                                <option value="normal">Normal (2-4 semaines)</option>
+                                <option value="rapide">Rapide (1-2 semaines)</option>
+                                <option value="urgent">Urgent (moins d'1 semaine)</option>
+                                <option value="flexible">Flexible (selon vos disponibilités)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Description détaillée -->
+                    <div class="section-formulaire">
+                        <h2>Description de votre projet</h2>
+
+                        <div class="groupe-formulaire">
+                            <label for="description">Décrivez votre projet en détail *</label>
+                            <textarea id="description" name="description" rows="6" required
+                                placeholder="Décrivez votre projet : style souhaité, fonctionnalités particulières, contraintes techniques, inspiration..."></textarea>
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label for="contraintes">Contraintes particulières</label>
+                            <textarea id="contraintes" name="contraintes" rows="3"
+                                placeholder="Contraintes d'espace, accès, normes particulières..."></textarea>
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label for="inspiration">Sources d'inspiration</label>
+                            <textarea id="inspiration" name="inspiration" rows="3"
+                                placeholder="Sites web, magazines, références..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Upload d'images -->
+                    <div class="section-formulaire">
+                        <h2>Images de référence</h2>
+                        <p>Ajoutez des photos pour nous aider à mieux comprendre votre projet (plans, photos de
+                            l'espace, références...)</p>
+
+                        <div class="groupe-formulaire">
+                            <div class="zone-upload">
+                                <div class="zone-upload-contenu">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                    </svg>
+                                    <p>Glissez-déposez vos images ici ou cliquez pour sélectionner</p>
+                                    <p class="info-upload">JPG, PNG, WebP - Max 5MB par image - 5 images maximum</p>
+                                </div>
+                                <input type="file" multiple accept="image/jpeg,image/jpg,image/png,image/webp"
+                                    style="display: none;">
+                                <div class="previsualisation-images"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Options supplémentaires -->
+                    <div class="section-formulaire">
+                        <h2>Options supplémentaires</h2>
+
+                        <div class="groupe-formulaire">
+                            <label>
+                                <input type="checkbox" name="deplacement" value="1">
+                                Je souhaite un déplacement à domicile pour prise de mesures
+                            </label>
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label>
+                                <input type="checkbox" name="conseil_materiaux" value="1">
+                                Je souhaite un conseil personnalisé sur les matériaux
+                            </label>
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label>
+                                <input type="checkbox" name="pose" value="1">
+                                Je souhaite la pose et l'installation
+                            </label>
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label>
+                                <input type="checkbox" name="garantie_etendue" value="1">
+                                Je souhaite une garantie étendue
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Communication -->
+                    <div class="section-formulaire">
+                        <h2>Préférences de communication</h2>
+
+                        <div class="groupe-formulaire">
+                            <label>Comment souhaitez-vous être contacté ?</label>
+                            <div style="display: flex; gap: var(--espacement-md); flex-wrap: wrap;">
+                                <label style="display: flex; align-items: center; gap: var(--espacement-xs);">
+                                    <input type="checkbox" name="contact_email" value="1" checked>
+                                    Email
+                                </label>
+                                <label style="display: flex; align-items: center; gap: var(--espacement-xs);">
+                                    <input type="checkbox" name="contact_telephone" value="1" checked>
+                                    Téléphone
+                                </label>
+                                <label style="display: flex; align-items: center; gap: var(--espacement-xs);">
+                                    <input type="checkbox" name="contact_sms" value="1">
+                                    SMS
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label for="horaire_contact">Horaire préféré pour vous contacter</label>
+                            <select id="horaire_contact" name="horaire_contact">
+                                <option value="journee">En journée (9h-17h)</option>
+                                <option value="soiree">En soirée (17h-20h)</option>
+                                <option value="weekend">Week-end</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Confidentialité -->
+                    <div class="section-formulaire">
+                        <div class="groupe-formulaire">
+                            <label>
+                                <input type="checkbox" name="confidentialite" value="1" required>
+                                J'accepte que mes données personnelles soient utilisées pour traiter ma demande de devis
+                                *
+                            </label>
+                        </div>
+
+                        <div class="groupe-formulaire">
+                            <label>
+                                <input type="checkbox" name="newsletter" value="1">
+                                Je souhaite recevoir la newsletter AYOUBDECOR avec nos dernières créations
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Bouton de soumission -->
+                    <div class="section-formulaire" style="text-align: center; margin-top: var(--espacement-2xl);">
+                        <button type="submit" class="btn btn-primaire"
+                            style="font-size: var(--font-size-lg); padding: var(--espacement-md) var(--espacement-2xl);">
+                            Envoyer ma demande de devis
+                        </button>
+                        <p
+                            style="margin-top: var(--espacement-md); font-size: var(--font-size-sm); color: var(--muted);">
+                            * Champs obligatoires
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Informations complémentaires -->
+    <section class="section" style="background-color: var(--neutral-50);">
+        <div class="conteneur">
+            <div class="section-header">
+                <h2>Comment ça marche ?</h2>
+                <p>Un processus simple et transparent pour votre projet</p>
+            </div>
+
+            <div class="grille-services">
+                <div class="carte-service">
+                    <div class="icone-service">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                        </svg>
+                    </div>
+                    <h3>1. Demande de devis</h3>
+                    <p>Remplissez notre formulaire détaillé avec vos besoins et préférences. Plus vous êtes précis, plus
+                        notre devis sera adapté.</p>
+                </div>
+
+                <div class="carte-service">
+                    <div class="icone-service">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                        </svg>
+                    </div>
+                    <h3>2. Étude personnalisée</h3>
+                    <p>Nous étudions votre projet et vous contactons sous 24-48h pour discuter des détails et planifier
+                        un rendez-vous si nécessaire.</p>
+                </div>
+
+                <div class="carte-service">
+                    <div class="icone-service">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                        </svg>
+                    </div>
+                    <h3>3. Devis détaillé</h3>
+                    <p>Vous recevez un devis complet avec plans, matériaux, délais et prix. Aucun engagement de votre
+                        part.</p>
+                </div>
+
+                <div class="carte-service">
+                    <div class="icone-service">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                        </svg>
+                    </div>
+                    <h3>4. Réalisation</h3>
+                    <p>Une fois le devis accepté, nous nous occupons de tout : fabrication, livraison et pose si
+                        souhaitée.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact rapide -->
+    <section class="section">
+        <div class="conteneur">
+            <div class="section-header" style="text-align: center;">
+                <h2>Besoin d'aide ?</h2>
+                <p>Notre équipe est là pour vous accompagner dans votre projet</p>
+                <div style="margin-top: var(--espacement-xl);">
+                    <a href="tel:+33123456789" class="btn btn-primaire" style="margin-right: var(--espacement-md);">
+                        📞 +228 90 62 87 17
+                    </a>
+                    <a href="mailto:contact@ayoubdecor.fr" class="btn btn-secondaire">
+                        ✉️ contact@ayoubdecor.fr
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pied-page">
+        <div class="conteneur">
+            <div class="contenu-footer">
+                <div class="colonne-footer">
+                    <h3>AYOUBDECOR</h3>
+                    <p>Fabricant de meubles modernes sur mesure. Conception, fabrication et pose de mobilier
+                        contemporain pour particuliers et professionnels.</p>
+                    <div class="reseaux-sociaux">
+                        <a href="#" class="reseau-social" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="reseau-social" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.281H6.721c-.49 0-.875.385-.875.875v7.83c0 .49.385.875.875.875h9.558c.49 0 .875-.385.875-.875v-7.83c0-.49-.385-.875-.875-.875z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="reseau-social" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="colonne-footer">
+                    <h3>Services</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: var(--espacement-xs);"><a href="services.html#fabrication">Fabrication
+                                sur mesure</a></li>
+                        <li style="margin-bottom: var(--espacement-xs);"><a href="services.html#pose">Pose et
+                                installation</a></li>
+                        <li style="margin-bottom: var(--espacement-xs);"><a
+                                href="services.html#renovation">Rénovation</a></li>
+                        <li style="margin-bottom: var(--espacement-xs);"><a
+                                href="services.html#amenagement">Aménagement</a></li>
+                    </ul>
+                </div>
+
+                <div class="colonne-footer">
+                    <h3>Contact</h3>
+                    <div style="margin-bottom: var(--espacement-sm);">
+                        <strong>Téléphone :</strong><br>
+                        <a href="tel:+228 90 62 87 17">+228 90 62 87 17</a>
+                    </div>
+                    <div style="margin-bottom: var(--espacement-sm);">
+                        <strong>Email :</strong><br>
+                        <a href="mailto:contact@ayoubdecor.fr">contact@ayoubdecor.fr</a>
+                    </div>
+                    <div>
+                        <strong>Adresse :</strong><br>
+                        123 Rue de l'Artisan<br>
+                        75000 Paris, France
+                    </div>
+                </div>
+
+                <div class="colonne-footer">
+                    <h3>Horaires</h3>
+                    <div style="margin-bottom: var(--espacement-xs);">
+                        <strong>Lundi - Vendredi :</strong><br>
+                        8h00 - 18h00
+                    </div>
+                    <div style="margin-bottom: var(--espacement-xs);">
+                        <strong>Samedi :</strong><br>
+                        9h00 - 17h00
+                    </div>
+                    <div>
+                        <strong>Dimanche :</strong><br>
+                        Fermé
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 AYOUBDECOR. Tous droits réservés. | <a href="#"
+                        style="color: var(--neutral-300);">Mentions légales</a> | <a href="#"
+                        style="color: var(--neutral-300);">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/devis.js"></script>
+   
+    <script>
+         
+        // Définir la date minimale pour le champ date (aujourd'hui)
+        document.addEventListener('DOMContentLoaded', function () {
+            const dateInput = document.getElementById('date_souhaitee');
+            if (dateInput) {
+                const aujourdhui = new Date().toISOString().split('T')[0];
+                dateInput.min = aujourdhui;
+            }
+        });
+    </script>
+</body>
+
+
+
+   
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+
+</html>
