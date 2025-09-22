@@ -1,18 +1,32 @@
+<?php
+
+session_start();
+
+// Configuration de la page
+$page_title = "AYOUBDECOR - Meubles modernes sur mesure | Atelier & pose à domicile";
+$page_description = "Conception, fabrication et pose de mobilier contemporain pour particuliers et professionnels";
+$current_page = "accueil";
+
+$realisations = '<p class="message-info">La galerie est temporairement indisponible.</p>';
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <title>AYOUBDECOR - Meubles modernes sur mesure | Atelier & pose à domicile</title>
+    <title><?php echo htmlspecialchars($page_title); ?></title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?php echo htmlspecialchars($page_description); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="acceuil.css">
+    <link rel="stylesheet" href="../boutique/js/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./assets/ayoubdecor_logoo.png">
 </head>
 
 <body>
@@ -20,21 +34,21 @@
     <header class="en-tete" id="en-tete">
         <div class="conteneur">
             <div class="header-contenu">
-                <a href="index.html" class="logo"><img src="ayoubdecor_logoo.png" alt="ayoub_logo"></a>
+                <a href="acceuil.php" class="logo"><img src="./assets/ayoubdecor_logoo.png" alt="ayoub_logo"></a>
 
                 <nav class="menu-principal" id="menu-principal">
                     <ul>
-                        <li><a href="acceuil.html">Accueil</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="galerie.html">Galerie</a></li>
-                        <li><a href="a-propos.html">À propos</a></li>
-                        <li><a href="boutique.html">Boutique</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="acceuil.php" class="<?php echo $current_page === 'accueil' ? 'active' : ''; ?>">Accueil</a></li>
+                        <li><a href="services.php">Services</a></li>
+                        <!-- <li><a href="galerie.php">Galerie</a></li> -->
+                        <li><a href="a-propos.php">À propos</a></li>
+                        <li><a href="boutique.php">Boutique</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </nav>
 
                 <div class="header-actions">
-                    <a href="/page_devis/devis.html" class="btn btn-primaire">Demander un devis</a>
+                    <a href="../page_devis/devis.php" class="btn btn-primaire">Demander un devis</a>
                     <button class="menu-burger" id="menu-burger" aria-label="Ouvrir le menu">
                         <span></span>
                         <span></span>
@@ -55,12 +69,12 @@
                         Transformez vos espaces avec des créations uniques alliant esthétique moderne et savoir-faire
                         artisanal.</p>
                     <div class="hero-actions">
-                        <a href="/page_devis/devis.html" class="btn btn-primaire">Demander un devis</a>
-                        <a href="galerie.html" class="btn btn-secondaire">Voir nos réalisations</a>
+                        <a href="../page_devis/devis.php" class="btn btn-primaire">Demander un devis</a>
+                        <a href="#" class="btn btn-secondaire">Voir nos réalisations</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="1.jpeg" alt="Meuble moderne sur mesure en bois et métal"
+                    <img src="./assets/1.jpeg" alt="Meuble moderne sur mesure en bois et métal"
                         loading="eager">
                 </div>
             </div>
@@ -87,7 +101,7 @@
                     <h3>Fabrication sur mesure</h3>
                     <p>Création de meubles uniques adaptés à vos espaces et à votre style. Chaque pièce est pensée et
                         réalisée selon vos spécifications exactes.</p>
-                    <a href="services.html#fabrication" class="btn btn-texte">En savoir plus →</a>
+                    <a href="services.php#fabrication" class="btn btn-texte">En savoir plus →</a>
                 </div>
 
                 <div class="carte-service">
@@ -101,7 +115,7 @@
                     <h3>Pose et installation</h3>
                     <p>Installation professionnelle de vos meubles avec soin et précision. Nous nous occupons de tout
                         pour un résultat parfait.</p>
-                    <a href="services.html#pose" class="btn btn-texte">En savoir plus →</a>
+                    <a href="services.php#pose" class="btn btn-texte">En savoir plus →</a>
                 </div>
 
                 <div class="carte-service">
@@ -115,7 +129,7 @@
                     <h3>Rénovation</h3>
                     <p>Remise à neuf de vos meubles existants. Donnez une seconde vie à vos pièces préférées avec notre
                         expertise.</p>
-                    <a href="services.html#renovation" class="btn btn-texte">En savoir plus →</a>
+                    <a href="services.php#renovation" class="btn btn-texte">En savoir plus →</a>
                 </div>
             </div>
         </div>
@@ -130,60 +144,13 @@
             </div>
 
             <div class="grille-galerie" id="grille-galerie">
-                <div class="element-galerie" data-categorie="cuisine">
-                    <img src="8.jpeg" alt="Cuisine moderne sur mesure en bois clair"
-                        loading="lazy">
-                    <div class="overlay-galerie">
-                        <h4>Cuisine moderne</h4>
-                        <p>Bois clair et métal noir</p>
-                    </div>
-                </div>
-
-                <div class="element-galerie" data-categorie="salon">
-                    <img src="4.jpeg" alt="Bibliothèque sur mesure pour salon"
-                        loading="lazy">
-                    <div class="overlay-galerie">
-                        <h4>Bibliothèque sur mesure</h4>
-                        <p>Chêne massif et laiton</p>
-                    </div>
-                </div>
-
-                <div class="element-galerie" data-categorie="bureau">
-                    <img src="6.jpeg" alt="Bureau moderne en bois et métal"
-                        loading="lazy">
-                    <div class="overlay-galerie">
-                        <h4>Bureau moderne</h4>
-                        <p>Noyer et acier inoxydable</p>
-                    </div>
-                </div>
-
-                <div class="element-galerie" data-categorie="chambre">
-                    <img src="5.jpeg" alt="Dressing sur mesure" loading="lazy">
-                    <div class="overlay-galerie">
-                        <h4>Dressing sur mesure</h4>
-                        <p>Bois de hêtre et verre</p>
-                    </div>
-                </div>
-
-                <div class="element-galerie" data-categorie="cuisine">
-                    <img src="11.jpeg" alt="Îlot central de cuisine" loading="lazy">
-                    <div class="overlay-galerie">
-                        <h4>Îlot central</h4>
-                        <p>Granit et chêne</p>
-                    </div>
-                </div>
-
-                <div class="element-galerie" data-categorie="salon">
-                    <img src="3.jpeg" alt="Meuble TV sur mesure" loading="lazy">
-                    <div class="overlay-galerie">
-                        <h4>Meuble TV</h4>
-                        <p>Chêne massif et LED</p>
-                    </div>
-                </div>
+                <?php echo $realisations; ?>
             </div>
 
             <div class="section-footer">
-                <a href="galerie.html" class="btn btn-primaire">Voir toutes nos réalisations</a>
+                <p style="text-align: center; color: var(--muted); font-style: italic;">
+                    Galerie en cours de mise à jour - Bientôt disponible
+                </p>
             </div>
         </div>
     </section>
@@ -240,9 +207,9 @@
                 <p style="color: var(--neutral-200);">Contactez-nous pour discuter de votre projet et obtenir un devis
                     personnalisé</p>
                 <div style="margin-top: var(--espacement-xl);">
-                    <a href="devis.html" class="btn btn-primaire" style="margin-right: var(--espacement-md);">Demander
+                    <a href="../page_devis/devis.php" class="btn btn-primaire" style="margin-right: var(--espacement-md);">Demander
                         un devis</a>
-                    <a href="contact.html" class="btn btn-secondaire"
+                    <a href="contact.php" class="btn btn-secondaire"
                         style="border-color: var(--neutral-100); color: var(--neutral-100);">Nous contacter</a>
                 </div>
             </div>
@@ -280,14 +247,14 @@
                 <div class="colonne-footer">
                     <h3>Services</h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: var(--espacement-xs);"><a href="services.html#fabrication">Fabrication
+                        <li style="margin-bottom: var(--espacement-xs);"><a href="services.php#fabrication">Fabrication
                                 sur mesure</a></li>
-                        <li style="margin-bottom: var(--espacement-xs);"><a href="services.html#pose">Pose et
+                        <li style="margin-bottom: var(--espacement-xs);"><a href="services.php#pose">Pose et
                                 installation</a></li>
                         <li style="margin-bottom: var(--espacement-xs);"><a
-                                href="services.html#renovation">Rénovation</a></li>
+                                href="services.php#renovation">Rénovation</a></li>
                         <li style="margin-bottom: var(--espacement-xs);"><a
-                                href="services.html#amenagement">Aménagement</a></li>
+                                href="services.php#amenagement">Aménagement</a></li>
                     </ul>
                 </div>
 
@@ -350,9 +317,10 @@
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
-    <script src="js/gallery.js"></script>
+    <!-- Scripts PHP (migrés depuis JavaScript) -->
+    <?php
+    // Les fichiers PHP main.php et gallery.php ont été supprimés
+    ?>
     <script>
         (function initCarouselTemoignages(){
     const container = document.getElementById('carousel-temoignages');
