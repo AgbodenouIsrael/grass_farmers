@@ -1,9 +1,11 @@
 <?php
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Inclure la connexion à la base de données
-require_once '../boutique/js/db.php';
+require_once dirname(__DIR__) . '/boutique/js/db.php';
 
 // Configuration
 $page_title = "Administration - Demandes de devis";
@@ -286,7 +288,8 @@ $stats = getDevisStats();
         .admin-header {
             background: linear-gradient(135deg, var(--wood-light) 0%, var(--wood-dark) 100%);
             color: var(--neutral-100);
-            padding: var(--espacement-xl) 0;
+            border-radius: var(--rayon-lg);
+            padding: var(--espacement-lg) var(--espacement-xl);
             box-shadow: var(--ombre-moyenne);
         }
 
@@ -341,6 +344,7 @@ $stats = getDevisStats();
         .admin-container {
             max-width: 1400px;
             margin: 0 auto;
+            text-align: center;
             padding: var(--espacement-xl) var(--espacement-lg);
         }
 
@@ -374,8 +378,9 @@ $stats = getDevisStats();
         /* Statistiques */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: var(--espacement-lg);
+            width: 100%;
             margin-bottom: var(--espacement-2xl);
         }
 
@@ -865,7 +870,7 @@ $stats = getDevisStats();
 </head>
 <body>
     <!-- Header admin -->
-    <header class="admin-header">
+    <!-- <header class="admin-header">
         <div class="admin-header-content">
             <a href="../page_acceuil/acceuil.php" class="admin-logo">
                 <img src="../page_acceuil/assets/ayoubdecor_logoo.png" alt="AYOUBDECOR Logo">
@@ -877,7 +882,7 @@ $stats = getDevisStats();
                 <a href="../boutique/boutique.php">🛍️ Boutique</a>
             </nav>
         </div>
-    </header>
+    </header> -->
 
     <!-- Contenu principal -->
     <main class="admin-container fade-in">
@@ -1072,10 +1077,7 @@ $stats = getDevisStats();
                             <span>Dernière modification:</span>
                             <span><?php echo date('d/m/Y à H:i:s', strtotime($viewDevis['updated_at'])); ?></span>
                         </div>
-                        <div class="meta-item">
-                            <span>Adresse IP:</span>
-                            <span><?php echo htmlspecialchars($viewDevis['ip_address'] ?? 'N/A'); ?></span>
-                        </div>
+                        
                     </div>
                 </div>
 
