@@ -1,5 +1,13 @@
+<?php
+// Démarrer la session pour les messages
+session_start();
+
+// Inclure la connexion à la base de données
+require_once '../boutique/js/db.php';
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -16,21 +24,21 @@
     <header class="en-tete" id="en-tete">
         <div class="conteneur">
             <div class="header-contenu">
-                <a href="index.html" class="logo">AYOUBDECOR</a>
-    
+                <a href="../page_acceuil/acceuil.php" class="logo">AYOUBDECOR</a>
+
                 <nav class="menu-principal" id="menu-principal">
                     <ul>
-                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="../page_acceuil/acceuil.php">Accueil</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <!-- <li><a href="galerie.html">Galerie</a></li> -->
+                        <li><a href="galerie.html">Galerie</a></li>
                         <li><a href="a-propos.html">À propos</a></li>
-                        <li><a href="boutique.html">Boutique</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="../boutique/boutique.php">Boutique</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </nav>
-    
+
                 <div class="header-actions">
-                    <a href="devis.html" class="btn btn-primaire">Demander un devis</a>
+                    <a href="../page_devis/devis.php" class="btn btn-primaire">Demander un devis</a>
                     <button class="menu-burger" id="menu-burger" aria-label="Ouvrir le menu">
                         <span></span>
                         <span></span>
@@ -50,7 +58,23 @@
             </div>
         </div>
     </section>
-    
+
+    <!-- Affichage des messages -->
+    <?php if (!empty($_SESSION['message'])): ?>
+    <section class="section">
+        <div class="conteneur">
+            <div class="message message-<?php echo $_SESSION['messageType'] ?? 'info'; ?>">
+                <p><?php echo htmlspecialchars($_SESSION['message']); ?></p>
+            </div>
+        </div>
+    </section>
+    <?php
+        // Effacer le message après l'avoir affiché
+        unset($_SESSION['message']);
+        unset($_SESSION['messageType']);
+    ?>
+    <?php endif; ?>
+
     <!-- Section Informations de contact -->
     <section class="section">
         <div class="conteneur">
@@ -58,24 +82,24 @@
                 <div class="info-contact">
                     <div class="icone-contact">📞</div>
                     <h3>Téléphone</h3>
-                    <p><a href="tel:+33123456789">01 23 45 67 89</a></p>
+                    <p><a href="tel:+22870297284">70 29 72 84</a></p>
                     <p>Lun-Ven : 8h-18h<br>Samedi : 9h-17h</p>
                 </div>
-    
-                <div class="info-contact">
+
+                <div class="info-contact" style="overflow-x: auto; white-space: nowrap; text-align: center;">
                     <div class="icone-contact">✉️</div>
                     <h3>Email</h3>
-                    <p><a href="mailto:contact@ayoubdecor.fr">contact@ayoubdecor.fr</a></p>
+                    <p><a href="mailto:emmanuelbossro2004@gmail.com">emmanuelbossro2004@gmail.com</a></p>
                     <p>Réponse sous 24h</p>
                 </div>
-    
+
                 <div class="info-contact">
                     <div class="icone-contact">📍</div>
                     <h3>Adresse</h3>
-                    <p>123 Rue de l'Artisan<br>75000 Paris, France</p>
+                    <p>123 Rue de l'Artisan<br>00228 Lomé, Togo</p>
                     <p>Sur rendez-vous uniquement</p>
                 </div>
-    
+
                 <div class="info-contact">
                     <div class="icone-contact">⏰</div>
                     <h3>Horaires</h3>
@@ -84,7 +108,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Section Formulaire de contact -->
     <section class="section" style="background-color: var(--neutral-50);">
         <div class="conteneur">
@@ -93,26 +117,27 @@
                     <h2>Envoyez-nous un message</h2>
                     <p>Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais</p>
                 </div>
-    
-                <form class="formulaire" id="formulaire-contact">
+
+                <form class="formulaire" id="formulaire-contact" action="traitementContact.php" method="POST">
+                    <input type="hidden" name="action" value="envoyer_message">
                     <div class="grille-formulaire">
                         <div class="groupe-formulaire">
-                            <label for="nom">Nom complet *</label>
+                            <label for="nom">Nom complet</label>
                             <input type="text" id="nom" name="nom" required>
                         </div>
-    
+
                         <div class="groupe-formulaire">
-                            <label for="email">Adresse email *</label>
+                            <label for="email">Adresse email</label>
                             <input type="email" id="email" name="email" required>
                         </div>
-    
+
                         <div class="groupe-formulaire">
                             <label for="telephone">Numéro de téléphone</label>
                             <input type="tel" id="telephone" name="telephone">
                         </div>
-    
+
                         <div class="groupe-formulaire">
-                            <label for="sujet">Sujet *</label>
+                            <label for="sujet">Sujet</label>
                             <select id="sujet" name="sujet" required>
                                 <option value="">Sélectionnez un sujet</option>
                                 <option value="devis">Demande de devis</option>
@@ -123,27 +148,12 @@
                             </select>
                         </div>
                     </div>
-    
+
                     <div class="groupe-formulaire">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" rows="6" required
-                            placeholder="Décrivez votre projet ou votre demande..."></textarea>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Décrivez votre projet ou votre demande..."></textarea>
                     </div>
-    
-                    <div class="groupe-formulaire">
-                        <label>
-                            <input type="checkbox" name="newsletter" value="1">
-                            Je souhaite recevoir la newsletter AYOUBDECOR avec nos dernières créations
-                        </label>
-                    </div>
-    
-                    <div class="groupe-formulaire">
-                        <label>
-                            <input type="checkbox" name="confidentialite" value="1" required>
-                            J'accepte que mes données personnelles soient utilisées pour traiter ma demande *
-                        </label>
-                    </div>
-    
+
                     <div style="text-align: center; margin-top: var(--espacement-xl);">
                         <button type="submit" class="btn btn-primaire">
                             Envoyer le message
@@ -153,7 +163,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Section Carte et localisation -->
     <section class="section">
         <div class="conteneur">
@@ -161,15 +171,15 @@
                 <h2>Notre atelier</h2>
                 <p>Venez nous rendre visite dans notre atelier pour discuter de votre projet</p>
             </div>
-    
+
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--espacement-2xl); align-items: start;">
                 <div>
                     <h3>Informations pratiques</h3>
                     <div style="margin-bottom: var(--espacement-lg);">
                         <h4>📍 Adresse</h4>
-                        <p>123 Rue de l'Artisan<br>75000 Paris, France</p>
+                        <p>123 Rue de l'Artisan<br>00228 Lomé, Togo</p>
                     </div>
-    
+
                     <div style="margin-bottom: var(--espacement-lg);">
                         <h4>🚗 Accès</h4>
                         <p><strong>En voiture :</strong> Parking gratuit disponible<br>
@@ -177,81 +187,21 @@
                             <strong>Bus :</strong> Lignes 23, 45, 67 - Arrêt "Rue de l'Artisan"
                         </p>
                     </div>
-    
+
                     <div style="margin-bottom: var(--espacement-lg);">
                         <h4>⏰ Visite sur rendez-vous</h4>
                         <p>Pour une visite de l'atelier et un entretien personnalisé, nous vous recommandons de prendre
                             rendez-vous au préalable.</p>
-                        <a href="devis.html" class="btn btn-primaire">Prendre rendez-vous</a>
+                        <a href="../page_devis/devis.php" class="btn btn-primaire">Prendre rendez-vous</a>
                     </div>
                 </div>
-    
+
                 <div>
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9914406081494!2d2.2922925156743164!3d48.85837007928746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1635789123456!5m2!1sfr!2sfr"
                         class="carte-google" style="width: 100%; height: 400px; border-radius: var(--rayon-md);"
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Section FAQ -->
-    <section class="section" style="background-color: var(--neutral-50);">
-        <div class="conteneur">
-            <div class="section-header">
-                <h2>Questions fréquentes</h2>
-                <p>Retrouvez les réponses aux questions les plus courantes</p>
-            </div>
-    
-            <div class="faq">
-                <div class="question-faq">
-                    <h3>Combien de temps faut-il pour réaliser un meuble sur mesure ?</h3>
-                    <p>Le délai de fabrication varie selon la complexité du projet. En moyenne, comptez 2 à 4 semaines
-                        pour un meuble standard, et 4 à 8 semaines pour un projet plus complexe comme une cuisine
-                        complète.</p>
-                </div>
-    
-                <div class="question-faq">
-                    <h3>Proposez-vous des garanties sur vos meubles ?</h3>
-                    <p>Oui, tous nos meubles bénéficient d'une garantie de 2 ans sur la fabrication et les matériaux. La
-                        pose est garantie 1 an. Nous nous engageons également sur la qualité de nos finitions.</p>
-                </div>
-    
-                <div class="question-faq">
-                    <h3>Puis-je visiter votre atelier ?</h3>
-                    <p>Absolument ! Nous vous accueillons dans notre atelier sur rendez-vous. C'est l'occasion de voir
-                        nos réalisations, discuter de votre projet et choisir les matériaux.</p>
-                </div>
-    
-                <div class="question-faq">
-                    <h3>Quels matériaux utilisez-vous ?</h3>
-                    <p>Nous travaillons principalement avec des essences de bois nobles (chêne, noyer, hêtre) et des
-                        matériaux modernes (métal, verre, composite). Tous nos matériaux sont sélectionnés pour leur
-                        qualité et leur durabilité.</p>
-                </div>
-    
-                <div class="question-faq">
-                    <h3>Proposez-vous la livraison et la pose ?</h3>
-                    <p>Oui, nous proposons un service complet incluant la livraison et la pose professionnelle. Nos
-                        artisans se déplacent dans toute la région parisienne et au-delà selon le projet.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Section CTA -->
-    <section class="section" style="background-color: var(--wood-dark); color: var(--neutral-100);">
-        <div class="conteneur">
-            <div class="section-header" style="text-align: center;">
-                <h2 style="color: var(--neutral-100);">Prêt à concrétiser votre projet ?</h2>
-                <p style="color: var(--neutral-200);">Contactez-nous dès aujourd'hui pour discuter de vos besoins</p>
-                <div style="margin-top: var(--espacement-xl);">
-                    <a href="devis.html" class="btn btn-primaire" style="margin-right: var(--espacement-md);">Demander
-                        un devis</a>
-                    <a href="tel:+33123456789" class="btn btn-secondaire"
-                        style="border-color: var(--neutral-100); color: var(--neutral-100);">Nous appeler</a>
                 </div>
             </div>
         </div>
@@ -276,7 +226,7 @@
                         </a>
                     </div>
                 </div>
-    
+
                 <div class="colonne-footer">
                     <h3>Services</h3>
                     <ul style="list-style: none; padding: 0;">
@@ -292,7 +242,7 @@
                         </li>
                     </ul>
                 </div>
-    
+
                 <div class="colonne-footer">
                     <h3>Contact</h3>
                     <div style="margin-bottom: var(--espacement-sm);">
@@ -309,7 +259,7 @@
                         00228 Lomé, Togo
                     </div>
                 </div>
-    
+
                 <div class="colonne-footer">
                     <h3>Horaires</h3>
                     <div style="margin-bottom: var(--espacement-xs);">
@@ -326,14 +276,7 @@
                     </div>
                 </div>
             </div>
-    
-            <div class="carte-google-container" style="margin: var(--espacement-2xl) 0;">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9914406081494!2d2.2922925156743164!3d48.85837007928746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1635789123456!5m2!1sfr!2sfr"
-                    class="carte-google" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-    
+
             <div class="copyright">
                 <p>&copy; 2024 AYOUBDECOR. Tous droits réservés. | <a href="#"
                         style="color: var(--neutral-300);">Mentions

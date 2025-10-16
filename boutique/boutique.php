@@ -422,8 +422,6 @@ function getCategoryLabel($category) {
     <!-- Section Filtres boutique -->
     <section class="section" style="background-color: var(--neutral-50);">
         <div class="conteneur">
-
-
             <!-- Filtres par catégorie -->
             <div class="filtres-boutique">
                 <a href="boutique.php?categorie=tous"
@@ -535,7 +533,7 @@ function getCategoryLabel($category) {
                             </div>
                         </div>
                         <div class="cart-item-price">
-                            <span><?php echo formatPrix($item['sous_total']); ?> FCFA</span>
+                            <span><?php echo formatPrix($item['sous_total']); ?></span>
                             <form method="POST" style="display: inline;">
                                 <input type="hidden" name="action" value="supprimer_panier">
                                 <input type="hidden" name="produit_id" value="<?php echo $item['produit_id']; ?>">

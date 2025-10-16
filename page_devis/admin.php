@@ -48,17 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // GESTION DES DEVIS
 
 
-// Récupérer tous les devis avec pagination
+// Récupérer tous les devis
 
-function getAllDevis($page = 1, $perPage = 20)
+function getAllDevis()
 {
     global $bdd;
 
     try {
-        
-        $offset = ($page - 1) * $perPage;
-
-        $sql = "SELECT * FROM devis ORDER BY created_at DESC LIMIT $perPage OFFSET $offset";
+        $sql = "SELECT * FROM devis ORDER BY created_at DESC";
 
         $stmt = $bdd->query($sql);
 
@@ -200,7 +197,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) 
 }
 
 // Récupérer les données
-$devis = getAllDevis($page, $perPage);
+$devis = getAllDevis();
 $totalDevis = countDevis();
 $totalPages = ceil($totalDevis / $perPage);
 $stats = getDevisStats();
@@ -213,77 +210,8 @@ $stats = getDevisStats();
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../boutique/js/style.css">
     <style>
-        :root {
-            /* Couleurs du site */
-            --wood-light: #BE8A4A;
-            --wood-dark: #5C3A21;
-            --neutral-100: #FFFFFF;
-            --neutral-50: #FAFAFA;
-            --neutral-200: #E5E5E5;
-            --neutral-300: #D4D4D4;
-            --neutral-600: #525252;
-            --neutral-800: #111111;
-            --neutral-900: #0A0A0A;
-            --muted: #666666;
-            --accent: #C9A66B;
-
-            /* Espacements */
-            --espacement-xs: 0.5rem;
-            --espacement-sm: 1rem;
-            --espacement-md: 1.5rem;
-            --espacement-lg: 2rem;
-            --espacement-xl: 3rem;
-            --espacement-2xl: 4rem;
-
-            /* Typo */
-            --font-titre: 'Montserrat', sans-serif;
-            --font-corps: 'Inter', sans-serif;
-            --font-size-xs: 0.75rem;
-            --font-size-sm: 0.875rem;
-            --font-size-base: 1rem;
-            --font-size-lg: 1.125rem;
-            --font-size-xl: 1.25rem;
-            --font-size-2xl: 1.5rem;
-            --font-size-3xl: 1.875rem;
-            --font-size-4xl: 2.25rem;
-
-            /* Transitions & ombres */
-            --transition-rapide: 150ms ease-in-out;
-            --transition-normale: 300ms ease-in-out;
-            --ombre-legere: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --ombre-moyenne: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --ombre-forte: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-
-            /* Rayons */
-            --rayon-sm: 4px;
-            --rayon-md: 8px;
-            --rayon-lg: 12px;
-            --rayon-xl: 16px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: var(--font-corps);
-            font-size: var(--font-size-base);
-            color: var(--neutral-800);
-            background: var(--neutral-50);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3 {
-            font-family: var(--font-titre);
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--wood-dark);
-            margin-bottom: var(--espacement-md);
-        }
-
         /* Header admin */
         .admin-header {
             background: linear-gradient(135deg, var(--wood-light) 0%, var(--wood-dark) 100%);
@@ -869,24 +797,8 @@ $stats = getDevisStats();
     </style>
 </head>
 <body>
-    <!-- Header admin -->
-    <!-- <header class="admin-header">
-        <div class="admin-header-content">
-            <a href="../page_acceuil/acceuil.php" class="admin-logo">
-                <img src="../page_acceuil/assets/ayoubdecor_logoo.png" alt="AYOUBDECOR Logo">
-                <span>AYOUBDECOR</span>
-            </a>
-            <nav class="admin-nav">
-                <a href="../page_acceuil/acceuil.php">← Retour à l'accueil</a>
-                <a href="devis.php">📝 Nouveau devis</a>
-                <a href="../boutique/boutique.php">🛍️ Boutique</a>
-            </nav>
-        </div>
-    </header> -->
-
-    <!-- Contenu principal -->
     <main class="admin-container fade-in">
-        <h1>🛠️ Administration des devis</h1>
+        <h1 style="margin-top: 5rem;">🛠️ Administration des devis</h1>
         <p class="section-subtitle">Gestion professionnelle des demandes de devis clients</p>
 
         <?php if (!empty($message)): ?>

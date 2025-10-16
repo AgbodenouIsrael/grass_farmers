@@ -45,9 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
 
                 // Créer le dossier s'il n'existe pas
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
+                // if (!is_dir($uploadDir)) {
+                //     mkdir($uploadDir, 0755, true);
+                // }
 
                 // Déplacer le fichier
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
@@ -486,6 +486,7 @@ try {
     </header>
 
     <!-- Section Admin -->
+     <?php require_once '../../page_devis/admin.php'; ?>
     <section class="section">
         <div class="conteneur">
             <div class="admin-header">
@@ -649,7 +650,7 @@ try {
                     </table>
                 </div>
             </div>
-            <?php require_once '../../page_devis/admin.php'; ?>
+            
         </div>
     </section>
 
