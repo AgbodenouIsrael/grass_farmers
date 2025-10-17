@@ -7,6 +7,12 @@ if (session_status() == PHP_SESSION_NONE) {
 // Inclure la connexion à la base de données
 require_once dirname(__DIR__) . '/boutique/js/db.php';
 
+// Vérifier si l'administrateur est connecté
+if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+    header('Location: login.php');
+    exit;
+}
+
 // Configuration
 $page_title = "Administration - Demandes de devis";
 $message = '';

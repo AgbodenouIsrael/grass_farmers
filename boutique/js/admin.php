@@ -44,11 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     throw new Exception('L\'image est trop volumineuse. Taille maximum : 5MB.');
                 }
 
-                // Créer le dossier s'il n'existe pas
-                // if (!is_dir($uploadDir)) {
-                //     mkdir($uploadDir, 0755, true);
-                // }
-
                 // Déplacer le fichier
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
                     $imagePath = './assets/uploads/' . $fileName;
@@ -486,7 +481,6 @@ try {
     </header>
 
     <!-- Section Admin -->
-     <?php require_once '../../page_devis/admin.php'; ?>
     <section class="section">
         <div class="conteneur">
             <div class="admin-header">

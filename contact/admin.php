@@ -1,5 +1,4 @@
 <?php
-// adminContact.php
 // Fichier de configuration et de connexion à la base de données
 require_once '../boutique/js/db.php';
 
@@ -9,10 +8,10 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // Vérifier si l'administrateur est connecté
 
-// if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-//     header('Location: login.php');
-//     exit;
-// }
+if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+    header('Location: login.php');
+    exit;
+}
 
 // Récupérer les messages de contact depuis la base de données
 try {
@@ -115,9 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_message_id']))
 <body>
     <div class="header">
         <h1>Gestion des Messages de Contact</h1>
-        <form method="POST" action="logout.php" style="display:inline;">
-            <button type="submit" class="logout-btn">Déconnexion</button>
-        </form>
     </div>
 
     <?php if (empty($messages)): ?>
