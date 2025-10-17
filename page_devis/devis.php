@@ -66,16 +66,24 @@ unset($_SESSION['messageType']);
     <!-- Icônes et styles -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../page_acceuil/acceuil.css">
-    <link rel="stylesheet" href="../boutique/js/style.css">
     <link rel="icon" type="image/x-icon" href="assets/ayoubdecor_logoo.png">
 
     <!-- Styles spécifiques à la page devis -->
     <style>
+
         /* ========================================
        STYLES POUR LE FORMULAIRE DE DEVIS EN 2 COLONNES
        ======================================== */
 
         /* Conteneur du formulaire avec largeur augmentée */
+
+        .logo {
+            font-family: var(--font-titre);
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-left: -50px;
+            color: var(--wood-dark);
+        }
         .formulaire {
             max-width: 1400px; /* Largeur augmentée pour le formulaire en 2 colonnes */
             margin: 0 auto;
@@ -304,35 +312,8 @@ unset($_SESSION['messageType']);
 </head>
 
 <body>
-    <!-- Header -->
-    <header class="en-tete" id="en-tete">
-        <div class="conteneur">
-            <div class="header-contenu">
-                <a href="index.html" class="logo" style="display: flex;
-    align-items: center;"> <img src="./assets/ayoubdecor_logoo.png" alt="ayoub_logo">AYOUBDECOR</a>
-
-                <nav class="menu-principal" id="menu-principal">
-                    <ul>
-                        <li><a href="/page_acceuil/acceuil.php">Accueil</a></li>
-                        <li><a href="services.php">Services</a></li>
-                        <!-- <li><a href="galerie.php">Galerie</a></li> -->
-                        <li><a href="a-propos.php">À propos</a></li>
-                        <li><a href="boutique.php">Boutique</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                    </ul>
-                </nav>
-
-                <div class="header-actions">
-                    <a href="devis.php" class="btn btn-primaire">Demander un devis</a>
-                    <button class="menu-burger" id="menu-burger" aria-label="Ouvrir le menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+    <!-- Header partagé -->
+    <?php include_once __DIR__ . '/../includes/header.php'; ?>
 
     <!-- Section Hero -->
     <section class="section-hero" style="min-height: 60vh; padding-top: 100px;">

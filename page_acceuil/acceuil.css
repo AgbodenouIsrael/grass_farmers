@@ -86,6 +86,18 @@ h1 {
     font-size: var(--font-size-4xl);
 }
 
+/* Center H1 headings inside the About page sections */
+.apropos h1,
+.histoire h1,
+.valeurs h1,
+.atelier h1,
+.equipe h1,
+.certif h1 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 h2 {
     font-size: var(--font-size-3xl);
 }
@@ -189,9 +201,22 @@ a:hover {
     padding: var(--espacement-sm) 0;
 }
 
-.logo  img{
-   width: 1rm;
-   height: 4rem;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-titre);
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--wood-dark);
+    text-decoration: none;
+}
+
+.logo img {
+    width: 3rem; /* ~48px */
+    height: 3rem;
+    object-fit: contain;
+    display: inline-block;
 }
 
 .logo:hover {
@@ -784,6 +809,210 @@ a:hover {
     color: var(--muted);
     margin-bottom: var(--espacement-xl);
 }
+
+/* About page specific styles (moved from apropos.php) */
+.apropos {
+    padding: var(--espacement-3xl) 0;
+}
+
+
+.apropos-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.apropos-texte {
+    flex: 1 1 50%;
+    max-width: 500px;
+    padding: 20px 0;
+    text-align: left;
+    color: #5c3d24;
+}
+
+.apropos-image {
+    flex: 0 0 45%;
+    max-width: 45%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.apropos-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* Reduce atelier & equipe image sizes slightly for a tighter layout */
+.atelier-image img,
+.equipe img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 6px solid rgba(90, 56, 33, 0.06);
+}
+
+/* Align atelier and equipe images to the right like .apropos-image */
+.atelier-image, .equipe > div:last-child {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+/* Specific: make .equipe section two-column via flexbox (text left, image right) */
+.equipe {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espacement-3xl);
+}
+.equipe > div:first-child {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.equipe > div:last-child {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+/* Atelier: images float to the right so surrounding text stays on the left without HTML changes */
+.atelier .atelier-image {
+    float: right;
+    width: 40%; /* reduce width so image appears smaller on desktop */
+    margin-left: var(--espacement-lg);
+}
+.atelier::after {
+    /* clear floats */
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* Valeurs and Certifications: show items side-by-side on desktop */
+.valeurs .items-row,
+.certif .items-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espacement-lg);
+    align-items: start;
+}
+
+.valeurs .item,
+.certif .item {
+    display: flex;
+    gap: var(--espacement-md);
+    align-items: flex-start;
+}
+
+/* Smaller screens: stack items */
+@media (max-width: 992px) {
+    .valeurs .items-row,
+    .certif .items-row {
+        grid-template-columns: 1fr;
+    }
+    .atelier-image, .equipe > div:last-child {
+        justify-content: center;
+    }
+}
+
+.histoire,
+.valeurs,
+.atelier,
+.equipe {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.valeurs h3,
+.certif h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: var(--font-size-lg);
+}
+
+.icon-svg {
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    flex: 0 0 36px;
+    color: var(--wood-light);
+}
+
+/* Certifications & équipe side-by-side on desktop */
+.certif-equipe-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espacement-3xl);
+    align-items: start;
+}
+
+/* Fade-in utilities */
+.fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 600ms cubic-bezier(.2,.8,.2,1), transform 600ms cubic-bezier(.2,.8,.2,1);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (max-width: 992px) {
+    .apropos-grid {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .certif-equipe-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .apropos-image img,
+    .atelier-image img,
+    .equipe img {
+        max-width: 100%;
+    }
+}
+
+/* Responsive breakpoint requested by user: <768px switch to vertical */
+@media (max-width: 768px) {
+    .apropos-grid,
+    .equipe {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .apropos-texte,
+    .apropos-image,
+    .equipe > div:first-child,
+    .equipe > div:last-child {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .atelier .atelier-image {
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        margin-top: var(--espacement-md);
+    }
+
+    .valeurs .items-row,
+    .certif .items-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 .service-avantages ul {
     list-style: none;
@@ -1386,6 +1615,224 @@ a:hover {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+/* Styles spécifiques pour la page À propos */
+.apropos {
+    padding: var(--espacement-3xl) 0;
+}
+
+.apropos .conteneur {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espacement-3xl);
+    align-items: start;
+}
+
+.apropos h1 {
+    font-size: var(--font-size-4xl);
+    color: var(--wood-dark);
+    margin-bottom: var(--espacement-md);
+}
+
+.apropos p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.portrait-artisan {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espacement-lg);
+    align-items: center;
+    margin: var(--espacement-2xl) 0;
+}
+
+.portrait-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--rayon-lg);
+}
+
+.histoire {
+    padding: var(--espacement-2xl) 0;
+}
+
+.histoire .conteneur {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--espacement-3xl);
+    align-items: start;
+}
+
+.histoire-entreprise {
+    padding: var(--espacement-lg);
+}
+
+.chronologie-liste {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--espacement-md);
+}
+
+.chronologie-liste li {
+    padding: var(--espacement-md);
+    background: var(--neutral-50);
+    border-radius: var(--rayon-md);
+    border-left: 4px solid var(--wood-light);
+}
+
+.valeurs {
+    padding: var(--espacement-2xl) 0;
+    background: linear-gradient(90deg, rgba(245,243,240,0.4), rgba(255,255,255,0));
+}
+
+.valeurs h3 {
+    color: var(--wood-dark);
+    margin-top: var(--espacement-md);
+}
+
+.valeurs p {
+    color: var(--muted);
+}
+
+/* Layout for atelier and equipe: text left, image right using Flexbox */
+.atelier,
+.equipe {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap; /* allow stacking on narrow screens */
+}
+
+/* Text block styling: apply to common textual children of the sections */
+.atelier > h1,
+.atelier > h2,
+.atelier > h3,
+.atelier > p,
+.atelier > ul,
+.equipe > h1,
+.equipe > p,
+.equipe > div:first-child {
+    flex: 1 1 50%;
+    max-width: 500px;
+    color: #5c3d24;
+    padding: 20px 0;
+    text-align: left;
+}
+
+/* Image block styling: target the image containers and images */
+.atelier .atelier-image,
+.equipe > div:last-child {
+    flex: 0 0 45%;
+    max-width: 45%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.atelier .atelier-image img,
+.equipe > div:last-child img,
+.equipe img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* Responsive: stack vertically on small screens, center elements */
+@media (max-width: 768px) {
+    .atelier,
+    .equipe {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--espacement-md);
+        text-align: center;
+    }
+
+    .atelier > h1,
+    .atelier > h2,
+    .atelier > h3,
+    .atelier > p,
+    .atelier > ul,
+    .equipe > h1,
+    .equipe > p,
+    .equipe > div:first-child {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center;
+        padding: 12px 0;
+    }
+
+    .atelier .atelier-image,
+    .equipe > div:last-child {
+        flex: 0 0 100%;
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+    .atelier .atelier-image img,
+    .equipe > div:last-child img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Responsive adjustments for About page */
+@media (max-width: 992px) {
+    .apropos .conteneur,
+    .histoire .conteneur {
+        grid-template-columns: 1fr;
+    }
+
+    .portrait-artisan,
+    .membre-equipe,
+    .presentation-atelier {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    /* Keep apropos-grid as flex on tablet/mobile and stack columns */
+    .apropos-grid {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--espacement-3xl);
+    }
+
+    .apropos-texte h2,
+    .apropos-texte h3 {
+        color: var(--wood-dark);
+    }
+
+    .apropos-image img {
+        width: 100%;
+        max-width: 420px; /* sensible maximum for tablet */
+        height: auto;
+        border-radius: var(--rayon-lg);
+        box-shadow: var(--ombre-forte);
+        margin: 0 auto; /* center on stacked layout */
+        display: block;
+    }
+
+    .chronologie-liste li {
+        text-align: left;
+    }
+}
+
+@media (max-width: 600px) {
+    .apropos h1 {
+        font-size: var(--font-size-3xl);
+    }
+
+    .portrait-image img,
+    .photo-membre img,
+    .image-atelier img {
+        height: auto;
     }
 }
 
