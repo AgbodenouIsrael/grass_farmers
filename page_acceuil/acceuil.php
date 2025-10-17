@@ -24,40 +24,14 @@ $realisations = '<p class="message-info">La galerie est temporairement indisponi
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="acceuil.css">
-    <link rel="stylesheet" href="../boutique/js/style.css">
+    <!-- <link rel="stylesheet" href="../boutique/js/style.css"> -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" type="image/x-icon" href="./assets/ayoubdecor_logoo.png">
 </head>
 
 <body>
-    <!-- Header -->
-    <header class="en-tete" id="en-tete">
-        <div class="conteneur">
-            <div class="header-contenu">
-                <a href="acceuil.php" class="logo"><img src="./assets/ayoubdecor_logoo.png" alt="ayoub_logo"></a>
-
-                <nav class="menu-principal" id="menu-principal">
-                    <ul>
-                        <li><a href="acceuil.php" class="<?php echo $current_page === 'accueil' ? 'active' : ''; ?>">Accueil</a></li>
-                        <li><a href="services.php">Services</a></li>
-                        <!-- <li><a href="galerie.php">Galerie</a></li> -->
-                        <li><a href="a-propos.php">À propos</a></li>
-                        <li><a href="boutique.php">Boutique</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                    </ul>
-                </nav>
-
-                <div class="header-actions">
-                    <a href="../page_devis/devis.php" class="btn btn-primaire">Demander un devis</a>
-                    <button class="menu-burger" id="menu-burger" aria-label="Ouvrir le menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+    <!-- Header partagé -->
+    <?php include_once __DIR__ . '/../includes/header.php'; ?>
 
     <!-- Section Hero -->
     <section class="section-hero">
@@ -199,6 +173,11 @@ $realisations = '<p class="message-info">La galerie est temporairement indisponi
         </div>
     </section>
 
+    
+
+    <!-- Footer -->
+    <footer class="pied-page">
+
     <!-- Section CTA -->
     <section class="section" style="background-color: var(--wood-dark); color: var(--neutral-100);">
         <div class="conteneur">
@@ -215,9 +194,7 @@ $realisations = '<p class="message-info">La galerie est temporairement indisponi
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="pied-page">
+    
         <div class="conteneur">
             <div class="contenu-footer">
                 <div class="colonne-footer">
@@ -364,7 +341,7 @@ $realisations = '<p class="message-info">La galerie est temporairement indisponi
 
     // Démarrer à 0
     afficher(0);
-})();
+    })();
     </script>
 </body>
 
