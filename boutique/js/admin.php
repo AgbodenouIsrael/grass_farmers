@@ -44,11 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     throw new Exception('L\'image est trop volumineuse. Taille maximum : 5MB.');
                 }
 
-                // Créer le dossier s'il n'existe pas
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
-
                 // Déplacer le fichier
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
                     $imagePath = './assets/uploads/' . $fileName;
@@ -148,190 +143,6 @@ try {
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="image/x-icon" href="../assets/ayoubdecor_logo2.png">
-</head>
-<body>
-    <!-- Header Admin -->
-    <header class="en-tete">
-        <div class="conteneur">
-            <div class="header-contenu">
-                <a href="../boutique.php" class="logo">AYOUBDECOR - Admin</a>
-                <nav class="menu-principal">
-                    <ul>
-                        <li><a href="../boutique.php">Retour à la boutique</a></li>
-                        <li><a href="?logout=1" style="color: #dc2626;">Déconnexion</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <!-- Section Admin -->
-    <section class="section">
-        <div class="conteneur">
-            <div class="admin-header">
-                <h1>Gestion des Produits</h1>
-                <button class="btn btn-primaire" id="add-product-btn" style="padding: var(--espacement-sm) var(--espacement-lg);">
-                    <i class='bx bx-plus'></i> Ajouter un produit
-                </button>
-            </div>
-
-            <?php if ($message): ?>
-            <div class="notification notification-<?php echo $messageType; ?>" style="margin-bottom: 20px;">
-                <i class='bx <?php echo $messageType === 'success' ? 'bx-check-circle' : 'bx-error-circle'; ?>'></i>
-                <span><?php echo $message; ?></span>
-            </div>
-            <?php endif; ?>
-
-            <!-- Formulaire d'ajout/modification -->
-            <div class="admin-form" id="product-form" style="display: none;">
-                <h2 id="form-title">Ajouter un produit</h2>
-                <form id="product-form-element" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" id="product-id" name="id">
-                    <input type="hidden" id="action" name="action" value="add">
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="product-name">Nom du produit *</label>
-                            <input type="text" id="product-name" name="nom" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="product-price">Prix (FCFA) *</label>
-                            <input type="number" id="product-price" name="prix" min="0" step="0.01" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="product-category">Catégorie *</label>
-                            <select id="product-category" name="categorie" required>
-                                <option value="">Sélectionner une catégorie</option>
-                                <option value="tables">Tables</option>
-                                <option value="etageres">Étagères</option>
-                                <option value="bureaux">Bureaux</option>
-                                <option value="rangements">Rangements</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="product-stock">Stock *</label>
-                            <input type="number" id="product-stock" name="stock" min="0" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="product-description">Description</label>
-                        <textarea id="product-description" name="description" rows="3"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="product-image">Image du produit</label>
-                        <div class="image-upload-container">
-                            <input type="file" id="product-image" name="image" accept="image/*" style="display: none;">
-                            <div class="image-upload-area" id="image-upload-area">
-                                <div class="upload-placeholder">
-                                    <i class='bx bx-cloud-upload'></i>
-                                    <p>Cliquez pour sélectionner une image</p>
-                                    <small>PNG, JPG, GIF jusqu'à 5MB</small>
-                                </div>
-                                <div class="image-preview" id="image-preview" style="display: none;">
-                                    <img id="preview-img" src="" alt="Aperçu">
-                                    <button type="button" class="remove-image" id="remove-image">
-                                        <i class='bx bx-x'></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <small style="color: var(--neutral-500);">Formats acceptés : PNG, JPG, GIF (max 5MB)</small>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primaire" style="padding: var(--espacement-sm) var(--espacement-lg);">Enregistrer</button>
-                        <button type="button" class="btn btn-secondaire" id="cancel-btn" style="padding: var(--espacement-sm) var(--espacement-lg);">Annuler</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Liste des produits -->
-            <div class="products-table">
-                <div class="table-header">
-                    <h2>Liste des produits</h2>
-                    <div class="table-stats">
-                        <span id="total-products"><?php echo count($products); ?> produit(s)</span>
-                    </div>
-                </div>
-
-                <div class="table-container">
-                    <table id="products-table">
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Nom</th>
-                                <th>Catégorie</th>
-                                <th>Prix</th>
-                                <th>Stock</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="products-tbody">
-                            <?php if (count($products) === 0): ?>
-                            <tr>
-                                <td colspan="6" class="empty-state">
-                                    <i class='bx bx-package'></i>
-                                    <p>Aucun produit trouvé</p>
-                                    <button class="btn btn-primaire" id="add-first-product-btn" style="padding: var(--espacement-sm) var(--espacement-lg);">
-                                        Ajouter votre premier produit
-                                    </button>
-                                </td>
-                            </tr>
-                            <?php else: ?>
-                                <?php foreach ($products as $product): ?>
-                                <tr>
-                                    <td>
-                                        <img src="<?php echo htmlspecialchars(str_replace('./assets/', '../assets/', $product['image'])); ?>" alt="<?php echo htmlspecialchars($product['nom']); ?>" class="product-thumbnail">
-                                    </td>
-                                    <td><?php echo htmlspecialchars($product['nom']); ?></td>
-                                    <td>
-                                        <span class="category-badge category-<?php echo $product['categorie']; ?>">
-                                            <?php
-                                            $categories = [
-                                                'tables' => 'Tables',
-                                                'etageres' => 'Étagères',
-                                                'bureaux' => 'Bureaux',
-                                                'rangements' => 'Rangements'
-                                            ];
-                                            echo $categories[$product['categorie']] ?? $product['categorie'];
-                                            ?>
-                                        </span>
-                                    </td>
-                                    <td><?php echo number_format($product['prix'], 0, ',', ' '); ?> FCFA</td>
-                                    <td>
-                                        <span class="stock-status <?php echo $product['stock'] > 0 ? 'in-stock' : 'out-of-stock'; ?>">
-                                            <?php echo $product['stock'] > 0 ? $product['stock'] . ' en stock' : 'Rupture'; ?>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <div class="action-buttons">
-                                            <button class="btn-icon edit-btn" onclick="editProduct(<?php echo $product['id']; ?>, '<?php echo addslashes($product['nom']); ?>', <?php echo $product['prix']; ?>, '<?php echo $product['categorie']; ?>', <?php echo $product['stock']; ?>, '<?php echo addslashes($product['description']); ?>', '<?php echo addslashes($product['image']); ?>')" title="Modifier">
-                                                <i class='bx bx-edit'></i>
-                                            </button>
-                                            <form method="POST" style="display: inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">
-                                                <input type="hidden" name="action" value="delete">
-                                                <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
-                                                <button type="submit" class="btn-icon delete-btn" title="Supprimer">
-                                                    <i class='bx bx-trash'></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <style>
     .admin-header {
         display: flex;
@@ -652,6 +463,190 @@ try {
         transform: scale(1.1);
     }
     </style>
+</head>
+<body>
+    <!-- Header Admin -->
+    <header class="en-tete">
+        <div class="conteneur">
+            <div class="header-contenu">
+                <a href="../boutique.php" class="logo">AYOUBDECOR - Admin</a>
+                <nav class="menu-principal">
+                    <ul>
+                        <li><a href="../boutique.php">Retour à la boutique</a></li>
+                        <li><a href="?logout=1" style="color: #dc2626;">Déconnexion</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Admin -->
+    <section class="section">
+        <div class="conteneur">
+            <div class="admin-header">
+                <h1>Gestion des Produits</h1>
+                <button class="btn btn-primaire" id="add-product-btn" style="padding: var(--espacement-sm) var(--espacement-lg);">
+                    <i class='bx bx-plus'></i> Ajouter un produit
+                </button>
+            </div>
+
+            <?php if ($message): ?>
+            <div class="notification notification-<?php echo $messageType; ?>" style="margin-bottom: 20px;">
+                <i class='bx <?php echo $messageType === 'success' ? 'bx-check-circle' : 'bx-error-circle'; ?>'></i>
+                <span><?php echo $message; ?></span>
+            </div>
+            <?php endif; ?>
+
+            <!-- Formulaire d'ajout/modification -->
+            <div class="admin-form" id="product-form" style="display: none;">
+                <h2 id="form-title">Ajouter un produit</h2>
+                <form id="product-form-element" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" id="product-id" name="id">
+                    <input type="hidden" id="action" name="action" value="add">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-name">Nom du produit *</label>
+                            <input type="text" id="product-name" name="nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price">Prix (FCFA) *</label>
+                            <input type="number" id="product-price" name="prix" min="0" step="0.01" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-category">Catégorie *</label>
+                            <select id="product-category" name="categorie" required>
+                                <option value="">Sélectionner une catégorie</option>
+                                <option value="tables">Tables</option>
+                                <option value="etageres">Étagères</option>
+                                <option value="bureaux">Bureaux</option>
+                                <option value="rangements">Rangements</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-stock">Stock *</label>
+                            <input type="number" id="product-stock" name="stock" min="0" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-description">Description</label>
+                        <textarea id="product-description" name="description" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-image">Image du produit</label>
+                        <div class="image-upload-container">
+                            <input type="file" id="product-image" name="image" accept="image/*" style="display: none;">
+                            <div class="image-upload-area" id="image-upload-area">
+                                <div class="upload-placeholder">
+                                    <i class='bx bx-cloud-upload'></i>
+                                    <p>Cliquez pour sélectionner une image</p>
+                                    <small>PNG, JPG, GIF jusqu'à 5MB</small>
+                                </div>
+                                <div class="image-preview" id="image-preview" style="display: none;">
+                                    <img id="preview-img" src="" alt="Aperçu">
+                                    <button type="button" class="remove-image" id="remove-image">
+                                        <i class='bx bx-x'></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <small style="color: var(--neutral-500);">Formats acceptés : PNG, JPG, GIF (max 5MB)</small>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primaire" style="padding: var(--espacement-sm) var(--espacement-lg);">Enregistrer</button>
+                        <button type="button" class="btn btn-secondaire" id="cancel-btn" style="padding: var(--espacement-sm) var(--espacement-lg);">Annuler</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Liste des produits -->
+            <div class="products-table">
+                <div class="table-header">
+                    <h2>Liste des produits</h2>
+                    <div class="table-stats">
+                        <span id="total-products"><?php echo count($products); ?> produit(s)</span>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="products-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Nom</th>
+                                <th>Catégorie</th>
+                                <th>Prix</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-tbody">
+                            <?php if (count($products) === 0): ?>
+                            <tr>
+                                <td colspan="6" class="empty-state">
+                                    <i class='bx bx-package'></i>
+                                    <p>Aucun produit trouvé</p>
+                                    <button class="btn btn-primaire" id="add-first-product-btn" style="padding: var(--espacement-sm) var(--espacement-lg);">
+                                        Ajouter votre premier produit
+                                    </button>
+                                </td>
+                            </tr>
+                            <?php else: ?>
+                                <?php foreach ($products as $product): ?>
+                                <tr>
+                                    <td>
+                                        <img src="<?php echo htmlspecialchars(str_replace('./assets/', '../assets/', $product['image'])); ?>" alt="<?php echo htmlspecialchars($product['nom']); ?>" class="product-thumbnail">
+                                    </td>
+                                    <td><?php echo htmlspecialchars($product['nom']); ?></td>
+                                    <td>
+                                        <span class="category-badge category-<?php echo $product['categorie']; ?>">
+                                            <?php
+                                            $categories = [
+                                                'tables' => 'Tables',
+                                                'etageres' => 'Étagères',
+                                                'bureaux' => 'Bureaux',
+                                                'rangements' => 'Rangements'
+                                            ];
+                                            echo $categories[$product['categorie']] ?? $product['categorie'];
+                                            ?>
+                                        </span>
+                                    </td>
+                                    <td><?php echo number_format($product['prix'], 0, ',', ' '); ?> FCFA</td>
+                                    <td>
+                                        <span class="stock-status <?php echo $product['stock'] > 0 ? 'in-stock' : 'out-of-stock'; ?>">
+                                            <?php echo $product['stock'] > 0 ? $product['stock'] . ' en stock' : 'Rupture'; ?>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-icon edit-btn" onclick="editProduct(<?php echo $product['id']; ?>, '<?php echo addslashes($product['nom']); ?>', <?php echo $product['prix']; ?>, '<?php echo $product['categorie']; ?>', <?php echo $product['stock']; ?>, '<?php echo addslashes($product['description']); ?>', '<?php echo addslashes($product['image']); ?>')" title="Modifier">
+                                                <i class='bx bx-edit'></i>
+                                            </button>
+                                            <form method="POST" style="display: inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">
+                                                <input type="hidden" name="action" value="delete">
+                                                <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                                                <button type="submit" class="btn-icon delete-btn" title="Supprimer">
+                                                    <i class='bx bx-trash'></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </section>
 
     <script>
     // Gestion du formulaire

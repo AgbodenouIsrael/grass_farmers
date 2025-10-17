@@ -137,7 +137,9 @@ a:hover {
 }
 
 .btn-primaire:hover {
-    background: var(--accent);
+    background: var(--neutral-100);
+    color: var(--accent);
+    border: 3px solid var(--accent);
     transform: translateY(-2px);
     box-shadow: var(--ombre-moyenne);
 }
@@ -460,6 +462,42 @@ a:hover {
 .icone-contact {
     font-size: var(--font-size-3xl);
     margin-bottom: var(--espacement-md);
+}
+
+/* Messages */
+.message {
+    padding: var(--espacement-lg);
+    border-radius: var(--rayon-md);
+    margin-bottom: var(--espacement-lg);
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.message-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.message-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+.message-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-color: #bee5eb;
+}
+
+/* Erreurs de formulaire */
+.erreur {
+    color: #dc3545;
+    font-size: var(--font-size-sm);
+    margin-top: var(--espacement-xs);
+    display: block;
 }
 
 /* Classes manquantes utilisées dans le HTML */
