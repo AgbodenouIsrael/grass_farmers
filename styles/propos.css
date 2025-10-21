@@ -1181,18 +1181,18 @@ a:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--espacement-3xl);
-    align-items: center;
+    
 }
 
 .workshop-text h2 {
-    color: var(--wood-dark);
     margin-bottom: var(--espacement-lg);
+    color: var(--wood-dark);
 }
 
 .workshop-text p {
     color: var(--muted);
     line-height: 1.6;
-    margin-bottom: var(--espacement-xl);
+    margin-bottom: var(--espacement-md);
 }
 
 .workshop-features {
