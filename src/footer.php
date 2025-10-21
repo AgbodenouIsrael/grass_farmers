@@ -1,22 +1,7 @@
 <!-- Footer partagé -->
 <footer class="pied-page">
 
-    <!-- Section CTA -->
-    <section class="section" style="background-color: var(--wood-dark); color: var(--neutral-100);">
-        <div class="conteneur">
-            <div class="section-header" style="text-align: center;">
-                <h2 style="color: var(--neutral-100);">Prêt à créer votre meuble sur mesure ?</h2>
-                <p style="color: var(--neutral-200);">Contactez-nous pour discuter de votre projet et obtenir un devis
-                    personnalisé</p>
-                <div style="margin-top: var(--espacement-xl);">
-                    <a href="/grass_farmers/pages/devis.php" class="btn btn-primaire" style="margin-right: var(--espacement-md);">Demander
-                        un devis</a>
-                    <a href="/grass_farmers/pages/contact.php" class="btn btn-secondaire"
-                        style="border-color: var(--neutral-100); color: var(--neutral-100);">Nous contacter</a>
-                </div>
-            </div>
-        </div>
-    </section>
+   
     
     <div class="conteneur">
         <div class="contenu-footer">
@@ -93,9 +78,9 @@
         </div>
 
         <div class="carte-google-container" style="margin: var(--espacement-2xl) 0;">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9914406081494!2d2.2922925156743164!3d48.85837007928746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1635789123456!5m2!1sfr!2sfr"
-                class="carte-google" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d126933.09341668441!2d1.275271800000008!3d6.176361200000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2stg!4v1761063313316!5m2!1sfr!2stg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            class="carte-google" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
 
