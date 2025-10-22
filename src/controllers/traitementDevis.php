@@ -68,7 +68,7 @@ function traiterFichiersUpload()
     $fichiers = $_FILES['images'];
 
     // Créer le dossier d'upload s'il n'existe pas
-    $dossierUpload = 'uploads/';
+    $dossierUpload = '../assets/uploads/';
     if (!is_dir($dossierUpload)) {
         mkdir($dossierUpload, 0755, true);
     }
@@ -134,7 +134,7 @@ function traiterFichierUpload($fichiers, $index)
     // Générer un nom unique pour le fichier
     $extension = pathinfo($nomFichier, PATHINFO_EXTENSION);
     $nomUnique = uniqid('devis_', true) . '.' . $extension;
-    $cheminDestination = 'uploads/' . $nomUnique;
+    $cheminDestination = '../assets/uploads/' . $nomUnique;
 
     // Déplacer le fichier
     if (move_uploaded_file($tmpName, $cheminDestination)) {
@@ -264,8 +264,6 @@ function preparerDonneesFormulaire($imagesUploades = [])
         'statut' => 'nouveau'
     ];
 }
-
-// FONCTIONS DE SAUVEGARDE EN BASE
 
 // Sauvegarder le devis dans la base de données
 

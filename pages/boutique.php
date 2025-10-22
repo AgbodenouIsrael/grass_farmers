@@ -380,34 +380,7 @@ function getCategoryLabel($category) {
 
 <body>
     <!-- Header -->
-    <header class="en-tete" id="en-tete">
-        <div class="conteneur">
-            <div class="header-contenu">
-                <a href="../" class="logo"><img src="../assets/ayoubdecor_logoo.png" alt="ayoub_logo">AYOUBDECOR</a>
-
-                <nav class="menu-principal" id="menu-principal">
-                    <ul>
-                        <li><a href="../">Accueil</a></li>
-                        <li><a href="service.php">Services</a></li>
-                        <!-- <li><a href="galerie.html">Galerie</a></li> -->
-                        <li><a href="apropos.php">À propos</a></li>
-                        <li><a href="boutique.php" class="active">Boutique</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                    </ul>
-                </nav>
-
-                <div class="header-actions">
-                    <a href="../admin/login.php" class="btn btn-secondaire" style="padding: 10px 15px;">Admin</a>
-                    <a href="devis.php" class="btn btn-primaire" style="padding: 15px 20px;">Demander un devis</a>
-                    <button class="menu-burger" id="menu-burger" aria-label="Ouvrir le menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+    <?php include_once __DIR__ . '/../src/header.php'; ?>
 
     <!-- Section Hero -->
     <section class="section-hero" style="min-height: 50vh; padding-top: 100px;">
@@ -555,7 +528,7 @@ function getCategoryLabel($category) {
                 </div>
 
                 <div style="margin-top: 15px;">
-                    <a href="../src/controllers/commande.php"><button class="btn btn-primaire" style="width: 100%; padding: var(--espacement-sm) var(--espacement-lg);">Procéder au paiement</button></a>
+                    <a href="../src/controllers/commande.php" target="_blank"><button class="btn btn-primaire" style="width: 100%; padding: var(--espacement-sm) var(--espacement-lg);">Procéder au paiement</button></a>
                 </div>
             <?php endif; ?>
         </aside>

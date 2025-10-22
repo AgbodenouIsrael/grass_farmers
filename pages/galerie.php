@@ -68,28 +68,18 @@ $categories = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo htmlspecialchars($page_description); ?>">
-
-    <!-- Polices Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Icônes -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Styles -->
     <link rel="stylesheet" href="../styles/acceuil.css">
     <link rel="icon" type="image/x-icon" href="../assets/ayoubdecor_logoo.png">
 
-    <!-- Styles spécifiques à la galerie -->
     <style>
-        /* ========================================
-           STYLES POUR LA GALERIE
-           ======================================== */
-
-        /* Hero Section */
         .galerie-hero {
+            margin-top: 5rem;
             background: linear-gradient(135deg, var(--wood-light) 0%, var(--wood-dark) 100%);
             color: var(--neutral-100);
             padding: var(--espacement-4xl) 0;
@@ -123,6 +113,7 @@ $categories = [
             font-size: var(--font-size-4xl);
             margin-bottom: var(--espacement-lg);
             font-weight: 700;
+            padding-top: 3rem;
         }
 
         .galerie-hero p {
@@ -196,6 +187,7 @@ $categories = [
             position: relative;
             opacity: 1;
             transform: scale(1);
+            margin: 3rem 0;
         }
 
         .galerie-card:hover {
@@ -370,6 +362,7 @@ $categories = [
         .stat-item {
             text-align: center;
             padding: var(--espacement-2xl);
+            margin-top: 3rem;
             background: var(--neutral-100);
             border-radius: var(--rayon-xl);
             border: 1px solid var(--neutral-200);
@@ -575,18 +568,18 @@ $categories = [
         <img class="lightbox-content" id="lightbox-img" alt="Image agrandie">
     </div>
 
-    <!-- CTA Section -->
-    <section class="galerie-cta">
+    <!-- Section CTA -->
+    <section class="section" style="background-color: var(--wood-dark); color: var(--neutral-100);">
         <div class="conteneur">
-            <h2>Inspiré par nos réalisations ?</h2>
-            <p>Contactez-nous pour créer votre propre meuble sur mesure</p>
-            <div class="cta-buttons">
-                <a href="devis.php" class="btn btn-primaire">
-                    <i class="fas fa-file-alt"></i> Demander un devis
-                </a>
-                <a href="contact.php" class="btn btn-secondaire">
-                    <i class="fas fa-phone"></i> Nous contacter
-                </a>
+            <div class="section-header" style="text-align: center;">
+                <h2 style="color: var(--neutral-100);">Inspiré par nos réalisations ?</h2>
+                <p style="color: var(--neutral-200);">Contactez-nous pour créer votre propre meuble sur mesure</p>
+                <div style="margin-top: var(--espacement-xl);">
+                    <a href="/grass_farmers/pages/devis.php" class="btn btn-primaire" style="margin-right: var(--espacement-md);">Demander
+                        un devis</a>
+                    <a href="/grass_farmers/pages/contact.php" class="btn btn-secondaire"
+                        style="border-color: var(--neutral-100); color: var(--neutral-100);">Nous contacter</a>
+                </div>
             </div>
         </div>
     </section>

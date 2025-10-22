@@ -1,7 +1,10 @@
 <!-- Footer partagé -->
 <footer class="pied-page">
+<<<<<<< HEAD
+=======
 
    
+>>>>>>> a0b7fa7c0c2e8f334c973556fcbbc87f3c16f06b
     
     <div class="conteneur">
         <div class="contenu-footer">

@@ -31,7 +31,7 @@ require_once '../src/database/db.php';
                         <li><a href="../">Accueil</a></li>
                         <li><a href="service.php">Services</a></li>
                         <li><a href="galerie.php">Galerie</a></li>
-                        <li><a href="apropos.php">À propos</a></li>
+                        <li><a href="propos.php">À propos</a></li>
                         <li><a href="boutique.php">Boutique</a></li>
                         <li><a href="contact.php">Contact</a></li>
                     </ul>

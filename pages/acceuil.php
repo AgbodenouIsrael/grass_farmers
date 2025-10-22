@@ -116,7 +116,6 @@ $realisations = '<p class="message-info">La galerie est temporairement indisponi
 </head>
 
 <body>
-    <!-- Header partagé -->
     <?php include_once __DIR__ . '/../src/header.php'; ?>
 
     <!-- Section Hero -->
