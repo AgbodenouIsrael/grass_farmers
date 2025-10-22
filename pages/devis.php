@@ -1,14 +1,8 @@
 <?php
-/**
- * AYOUBDECOR - Page de demande de devis
- * Formulaire complet pour la soumission de demandes de devis personnalisées
- */
 
 // Démarrer la session pour les messages et données temporaires
 session_start();
 
-// Inclure les fonctions de base de données depuis page_accueil
-// require_once '../page_acceuil/php/db_functions.php'; // db_functions.php supprimé
 
 // Configuration de la page
 $page_title = "AYOUBDECOR - Demande de devis personnalisé";
@@ -26,10 +20,6 @@ $message = '';
 $messageType = 'info';
 $erreurs = [];
 
-// ========================================
-// GESTION DES MESSAGES DE SESSION
-// ========================================
-
 // Récupérer les messages depuis la session (envoyés par traitementDevis.php)
 $message = $_SESSION['message'] ?? '';
 $messageType = $_SESSION['messageType'] ?? 'info';
@@ -37,12 +27,6 @@ $messageType = $_SESSION['messageType'] ?? 'info';
 // Nettoyer les messages de session après les avoir récupérés
 unset($_SESSION['message']);
 unset($_SESSION['messageType']);
-
-// ========================================
-// FONCTIONS SUPPRIMÉES - DÉPLACÉES VERS traitementDevis.php
-// ========================================
-// Toutes les fonctions de traitement, validation et sauvegarde ont été déplacées
-// vers le fichier traitementDevis.php pour une meilleure séparation des responsabilités
 
 ?>
 
@@ -329,7 +313,7 @@ unset($_SESSION['messageType']);
     <section class="section" style="padding-top: 40px;">
         <div class="conteneur">
             <div class="formulaire" id="formulaire-devis">
-                <form id="form-devis" method="POST" action="traitementDevis.php" enctype="multipart/form-data" novalidate>
+                <form id="form-devis" method="POST" action="../src/controllers/traitementDevis.php" enctype="multipart/form-data" novalidate>
                     <input type="hidden" name="action" value="soumettre_devis">
 
                     <div class="form-grid">

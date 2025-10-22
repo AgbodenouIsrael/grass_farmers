@@ -1,9 +1,4 @@
-/* ========================================
-   AYOUBDECOR - Page À Propos
-   Design narratif et personnel
-   ======================================== */
 
-/* Variables CSS */
 :root {
     --wood-light: #BE8A4A;
     --wood-dark: #5C3A21;
@@ -1197,7 +1192,7 @@ a:hover {
 
 .workshop-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--espacement-lg);
 }
 
@@ -1247,7 +1242,7 @@ a:hover {
 }
 
 .story-cta-content {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -1268,14 +1263,13 @@ a:hover {
     display: flex;
     gap: var(--espacement-lg);
     justify-content: center;
-    flex-wrap: wrap;
 }
 
 .btn-story-primary {
     background: var(--neutral-100);
     color: var(--wood-dark);
     border: 2px solid var(--neutral-100);
-    padding: var(--espacement-md) var(--espacement-xl);
+    padding: var(--espacement-sm) var(--espacement-md);
     border-radius: var(--rayon-lg);
     font-weight: 600;
     text-decoration: none;
@@ -1297,7 +1291,7 @@ a:hover {
     background: transparent;
     color: var(--neutral-100);
     border: 2px solid var(--neutral-100);
-    padding: var(--espacement-md) var(--espacement-xl);
+    padding: var(--espacement-sm) var(--espacement-md);
     border-radius: var(--rayon-lg);
     font-weight: 600;
     text-decoration: none;
@@ -1411,11 +1405,6 @@ a:hover {
     }
 }
 
-/* ========================================
-   MODAL POUR IMAGES AGRANDIES
-   ======================================== */
-
-/* Overlay sur les images cliquables */
 .image-overlay {
     position: absolute;
     top: 0;

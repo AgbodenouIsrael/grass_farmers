@@ -263,6 +263,7 @@ function countDevis()
         $stmt = $bdd->query($sql);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['total'];
+        var_dump($result);
     } catch (PDOException $e) {
         error_log('Erreur lors du comptage des devis: ' . $e->getMessage());
         return 0;
@@ -580,27 +581,26 @@ if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) 
 
 // Récupérer les données selon la section
 $devis = ($section === 'devis') ? getAllDevis() : [];
-$totalDevis = ($section === 'devis') ? countDevis() : 0;
+$totalDevis = ($section === 'devis') ? 0 : countDevis();
 $statsDevis = ($section === 'devis') ? getDevisStats() : [];
 
 $contacts = ($section === 'contacts') ? getAllContacts() : [];
-$totalContacts = ($section === 'contacts') ? countContacts() : 0;
+$totalContacts = ($section === 'contacts') ? 0 : countContacts();
 $statsContacts = ($section === 'contacts') ? getContactStats() : [];
 
 $galleryImages = ($section === 'galerie') ? getAllGalleryImages() : [];
-$totalGalleryImages = ($section === 'galerie') ? countGalleryImages() : 0;
+$totalGalleryImages = ($section === 'galerie') ? 0 : countGalleryImages();
 
 $products = ($section === 'boutique') ? getAllProducts() : [];
-$totalProducts = ($section === 'boutique') ? countProducts() : 0;
+$totalProducts = ($section === 'boutique') ? 0 : countProducts();
 
 // Initialiser les variables de contrôle d'affichage
 $showProductAddForm = ($section === 'boutique' && isset($_GET['action']) && $_GET['action'] === 'add');
 
-// Gestion de l'affichage des détails pour les contacts (pour le modal AJAX)
+// Gestion de l'affichage des détails pour les contacts
 if ($section === 'contacts' && isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) {
     $viewContact = getContactById(intval($_GET['id']));
     if ($viewContact) {
-        // Afficher seulement les détails du contact pour le modal AJAX
         ?>
 <div class="devis-details-section">
     <div class="details-header">
@@ -698,7 +698,7 @@ if ($section === 'contacts' && isset($_GET['action']) && $_GET['action'] === 'vi
     </div>
 </div>
 <?php
-        exit; // Sortir pour éviter d'afficher le reste de la page
+        exit;
     }
 }
 
@@ -920,7 +920,6 @@ if ($section === 'boutique' && isset($_GET['action']) && isset($_GET['id'])) {
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../styles/boutique.css">
     <style>
-        /* Layout principal */
         .admin-layout {
             display: flex;
             min-height: 100vh;
@@ -2694,13 +2693,13 @@ if ($section === 'boutique' && isset($_GET['action']) && isset($_GET['id'])) {
                             </div>
 
                             <div class="form-group">
-                                <label for="prix">Prix (€)</label>
+                                <label for="prix">Prix (F CFA)</label>
                                 <div class="input-group">
                                     <input type="number" id="prix" name="prix" step="0.01" min="0" required
                                         placeholder="0.00">
                                     <i class="bx bx-euro input-icon"></i>
                                 </div>
-                                <div class="input-hint">Prix TTC en euros</div>
+                                <div class="input-hint">Prix TTC en cfa</div>
                             </div>
                         </div>
 
@@ -2800,7 +2799,7 @@ if ($section === 'boutique' && isset($_GET['action']) && isset($_GET['id'])) {
                                 </td>
                                 <td><?php echo htmlspecialchars($p['nom']); ?>
                                 </td>
-                                <td><?php echo htmlspecialchars($p['prix']); ?>€
+                                <td><?php echo htmlspecialchars($p['prix']); ?> F
                                 </td>
                                 <td><?php echo htmlspecialchars($p['categorie'] ?? 'Non catégorisé'); ?>
                                 </td>

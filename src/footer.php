@@ -1,22 +1,5 @@
 <!-- Footer partagé -->
 <footer class="pied-page">
-
-    <!-- Section CTA -->
-    <section class="section" style="background-color: var(--wood-dark); color: var(--neutral-100);">
-        <div class="conteneur">
-            <div class="section-header" style="text-align: center;">
-                <h2 style="color: var(--neutral-100);">Prêt à créer votre meuble sur mesure ?</h2>
-                <p style="color: var(--neutral-200);">Contactez-nous pour discuter de votre projet et obtenir un devis
-                    personnalisé</p>
-                <div style="margin-top: var(--espacement-xl);">
-                    <a href="/grass_farmers/pages/devis.php" class="btn btn-primaire" style="margin-right: var(--espacement-md);">Demander
-                        un devis</a>
-                    <a href="/grass_farmers/pages/contact.php" class="btn btn-secondaire"
-                        style="border-color: var(--neutral-100); color: var(--neutral-100);">Nous contacter</a>
-                </div>
-            </div>
-        </div>
-    </section>
     
     <div class="conteneur">
         <div class="contenu-footer">

@@ -1,8 +1,4 @@
 <?php
-/**
- * Script de traitement du paiement - Redirection WhatsApp
- * Gère la récupération du panier et la génération du message WhatsApp
- */
 
 session_start();
 include '../database/db.php';
@@ -20,20 +16,18 @@ if (empty($panier)) {
 $total = calculerTotalPanier();
 
 // Construire le message WhatsApp formaté
-$message = "🛒 Nouvelle commande depuis AYOUBDECOR :%0A%0A";
+$message = " Nouvelle commande depuis AYOUBDECOR :\n\n";
 
 foreach ($panier as $item) {
-    $message .= "• " . $item['nom'] . " x" . $item['quantite'] . " → " . formatPrix($item['sous_total']) . "%0A";
+    $message .= "• " . $item['nom'] . " x" . $item['quantite'] . " → " . formatPrix($item['sous_total']) . "\n";
 }
 
-$message .= "%0A💰 Total : " . formatPrix($total) . "%0A%0A";
-$message .= "Merci de me contacter pour finaliser le paiement.%0A%0A";
+$message .= "\n Total : " . formatPrix($total) . "\n\n";
+$message .= "Merci de me contacter pour finaliser le paiement.\n\n";
 $message .= "Cordialement";
 
-// Encoder le message pour l'URL (préserve les emojis UTF-8)
 $message_encode = rawurlencode($message);
 
-// Créer l'URL WhatsApp (remplacer par le numéro réel)
 $whatsapp_url = "https://wa.me/+22891810232?text=" . $message_encode;
 
 // Rediriger vers WhatsApp
