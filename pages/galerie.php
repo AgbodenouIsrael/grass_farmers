@@ -86,6 +86,7 @@ $categories = [
             text-align: center;
             position: relative;
             overflow: hidden;
+
         }
 
         .galerie-hero::before {
@@ -119,6 +120,14 @@ $categories = [
             font-size: var(--font-size-lg);
             margin-bottom: var(--espacement-2xl);
             opacity: 0.9;
+        }
+
+        .galerie-hero h1,p{
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 600px;
+            margin: auto;
         }
 
         /* Filtres */

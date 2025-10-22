@@ -217,7 +217,7 @@ $current_page = "propos";
     <?php include_once __DIR__ . '/../src/footer.php'; ?>
 
     <!-- Scripts -->
-    <script>
+<script>
     // Fonction globale pour ouvrir la modal d'image
     function openImageModal(imageSrc) {
         const modal = document.getElementById('imageModal');

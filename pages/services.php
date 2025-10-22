@@ -263,10 +263,11 @@ $current_page = "services";
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+    <?php include_once __DIR__ . '/../src/footer.php'; ?>
     </section>
 
-    <!-- Footer -->
-    <?php include_once __DIR__ . '/../src/footer.php'; ?>
+    
 
     <script>
         // Animation au scroll pour les cartes de service
